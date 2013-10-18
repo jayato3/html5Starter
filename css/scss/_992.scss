@@ -1,0 +1,38 @@
+
+
+/**
+ *  Hero blocks
+ */
+ 
+.hero {
+	padding: 0;
+	position: relative;
+	
+	.copy {
+		padding-top: 120px;
+		width: 40%;
+		
+		.home & {
+			padding-top: 200px;
+		}
+		
+		h2 {
+			@include font-size(25);
+		}
+		
+	}
+	
+}
+
+/**
+ *  Homepage-specific
+ */
+
+.home {
+	
+	.media-right {
+		display: block;
+		padding: 60px 0 0 !important;
+	}
+	
+}

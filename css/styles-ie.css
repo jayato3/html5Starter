@@ -1,0 +1,62 @@
+/*------------------------------------*\
+    Imports
+\*------------------------------------*/
+/* #Layout
+================================================== */
+/* --- Grid variables ---*/
+/* #Typography
+================================================== */
+/* Based on a 16px base font size this is equivalent to an 18 pixel baseline grid */
+/* #Styling
+================================================== */
+/* #Helpers
+================================================== */
+/* Accessible hiding */
+/* Hide from visual and speaking browsers */
+/* Cross browser inline-block: http://css-tricks.com/snippets/css/cross-browser-inline-block/ */
+/* The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/ */
+/* Colors
+================================================== */
+/*
+ * Variables
+ *
+ ************************************************************************************************/
+/*
+ * Base
+ *
+ ************************************************************************************************/
+/*
+ * Layout
+ *
+ ************************************************************************************************/
+#mediaquery {
+  width: 100px; }
+
+#mediaquery:after {
+  content: "full"; }
+
+/*
+ * Modules
+ *
+ ************************************************************************************************/
+/**
+ *  Hero blocks
+ */
+.hero {
+  padding: 0;
+  position: relative; }
+  .hero .copy {
+    padding-top: 120px;
+    width: 40%; }
+    .home .hero .copy {
+      padding-top: 200px; }
+    .hero .copy h2 {
+      font-size: 25px;
+      font-size: 1.5625rem; }
+
+/**
+ *  Homepage-specific
+ */
+.home .media-right {
+  display: block;
+  padding: 60px 0 0 !important; }

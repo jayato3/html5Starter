@@ -1,0 +1,207 @@
+/* #Layout
+================================================== */
+
+/* --- Grid variables ---*/ 
+$max_columns: 12;
+$gutter_px: 0;
+$gutter_pc: 0%;
+
+@mixin span($num, $gutter_pc, $gutter_px, $max_columns) {
+    $one_col: (100% - ($gutter_pc * ($max_columns - 1))) / $max_columns;
+    width:($one_col * $num) + ($gutter_pc * ($num - 1));
+}
+
+
+/* #Typography
+================================================== */
+
+@mixin font-size($font-size: 16) {
+$rem: ($font-size / 16);
+font-size: $font-size * 1px;
+font-size: #{$rem}rem; }
+
+@mixin line-height($line-height: 18) {
+$rem: ($line-height / 18);
+line-height: $line-height * 1px;
+line-height: #{$rem}rem; }
+
+$baseline: 1.125em; /* Based on a 16px base font size this is equivalent to an 18 pixel baseline grid */
+
+
+/* #Styling
+================================================== */
+
+@mixin box-sizing( $value: border-box ) {
+	-webkit-box-sizing: $value;
+	-moz-box-sizing: 	$value;
+	box-sizing: 		$value;
+}
+
+@mixin box-shadow( $x: 0, $y: 0, $blur: 0, $color: #000, $inset:"" ) {
+	-webkit-box-shadow: $x $y $blur $color #{$inset};
+	-moz-box-shadow: 	$x $y $blur $color #{$inset};
+	box-shadow: 		$x $y $blur $color #{$inset};
+}
+
+@mixin inner-shadow($x: 0, $y: 1px, $blur: 2px, $spread: 0, $alpha: 0.25) {
+	-webkit-box-shadow: inset $x $y $blur $spread rgba(0, 0, 0, $alpha);
+	-moz-box-shadow: inset $x $y $blur $spread rgba(0, 0, 0, $alpha);
+	box-shadow: inset $x $y $blur $spread rgba(0, 0, 0, $alpha);
+}
+
+@mixin linear-gradient( $colStart, $colEnd, $start:"0%", $end:"100%" ) {
+	background:			-webkit-linear-gradient(top, $colStart 0%, $colEnd 100%);
+	background:			-webkit-gradient(linear, left top, left bottom, from($colStart), to($colEnd)) 0 0;
+	background:			-moz-linear-gradient(top, $colStart, $colEnd) 0 0;
+	background:			-ms-linear-gradient(top, $colStart, $colEnd);
+	background:			-o-linear-gradient(top, $colStart, $colEnd);
+	//filter:				progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$colStart}, endColorstr=#{$colEnd});
+}
+
+@mixin linear-gradient-bkg-image( $url, $repeat, $x, $y, $colStart, $colEnd ) {
+	background: url($url) $repeat $x $y;
+	background: url($url) $repeat $x $y, -webkit-gradient(linear, left top, left bottom, from($colStart), to($colEnd)) 0 0;
+	background: url($url) $repeat $x $y, -moz-linear-gradient(top, $colStart, $colEnd);
+	background: url($url) $repeat $x $y, -ms-linear-gradient(top, $colStart, $colEnd);
+	background: url($url) $repeat $x $y, -o-linear-gradient(top, $colStart, $colEnd);
+}
+
+@mixin opacity( $value ) {
+	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value * 100}); // ie8
+	filter: alpha(opacity=#{$value * 100}); // ie 6-7
+	opacity: $value; // good browsers
+}
+
+@mixin transition( $property, $duration, $function: linear ) {	
+	-webkit-transition: $property $duration $function;
+	-moz-transition: 	$property $duration $function;
+	-ms-transition: 	$property $duration $function;
+	-o-transition: 		$property $duration $function;
+	transition: 		$property $duration $function;
+}
+
+@mixin transform( $transform ) {
+	-webkit-transform:	$transform;
+	-moz-transform:		$transform;
+	-ms-transform:		$transform;
+	-o-transform: 		$transform;
+	transform:			$transform;
+}
+
+@mixin tap-highlight-color( $color ) {
+	-webkit-tap-highlight-color:	$color;
+	-moz-tap-highlight-color:		$color;
+	-o-tap-highlight-color:			$color;
+}
+
+@mixin hide-text {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+@mixin hidden {
+	display: none !important; 
+	visibility: hidden;
+}
+
+@mixin border-radius ( $radius: 3 ) {
+	border-radius: #{$radius}px;
+}
+
+@mixin shadow-left {
+	background: -webkit-gradient(radial, left center, 0px, center center, 50%, color-stop(0%,rgba(0,0,0,0.05)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -moz-radial-gradient(left, ellipse cover, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 50%); /* FF3.6+ */
+	background: -webkit-radial-gradient(left, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 50%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(left, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 50%); /* Opera 12+ */
+	background: -ms-radial-gradient(left, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 50%); /* IE10+ */
+	background: radial-gradient(ellipse at left center, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 50%); /* W3C */
+}
+
+@mixin shadow-bottom-left {
+	background: -moz-linear-gradient(45deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 30%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(0,0,0,0.05)), color-stop(30%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(45deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(45deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(45deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* IE10+ */
+	background: linear-gradient(45deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* W3C */
+}
+
+@mixin shadow-top-left {
+	background: -moz-linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 30%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(0,0,0,0.05)), color-stop(30%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(135deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(135deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(135deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* IE10+ */
+	background: linear-gradient(135deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 35%); /* W3C */
+}
+
+@mixin shadow-top-right {
+	background: -moz-linear-gradient(235deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 40%); /* FF3.6+ */
+	background: -webkit-gradient(linear, right top, left bottom, color-stop(0%,rgba(0,0,0,0.05)), color-stop(40%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(235deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 40%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(235deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 40%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(235deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 40%); /* IE10+ */
+	background: linear-gradient(235deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 40%); /* W3C */
+}
+
+@mixin shadow-top {
+	background: -webkit-gradient(radial, center top, 0px, center center, 0%, color-stop(0%,rgba(0,0,0,0.05)), color-stop(60%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -moz-radial-gradient(center top, ellipse cover, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 60%); /* FF3.6+ */
+	background: -webkit-radial-gradient(center top, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 60%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center top, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 60%); /* Opera 12+ */
+	background: -ms-radial-gradient(center top, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 60%); /* IE10+ */
+	background: radial-gradient(ellipse at center top, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 60%); /* W3C */
+}
+
+/* #Helpers
+================================================== */
+
+/* Accessible hiding */
+
+@mixin accessible-hide {
+	// http://css-tricks.com/places-its-tempting-to-use-display-none-but-dont/
+	/*position: absolute !important;
+	top: -9999px !important;
+	left: -9999px !important;*/
+	// http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+	position: absolute !important;
+	height: 1px; width: 1px; 
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Hide from visual and speaking browsers */
+
+@mixin hidden {
+	display: none !important; 
+	visibility: hidden;
+}
+
+/* Cross browser inline-block: http://css-tricks.com/snippets/css/cross-browser-inline-block/ */
+
+@mixin inline-block {
+	display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    //*display: inline;
+}
+
+/* The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/ */
+
+@mixin clearfix() {
+
+	//*zoom: 1;
+		
+	&:before, &:after {
+	    content: "";
+	    display: table;
+	}
+	
+	&:after {
+	    clear: both;
+	}
+
+}

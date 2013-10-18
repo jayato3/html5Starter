@@ -1,0 +1,130 @@
+/*
+	Theme Name: O3 World
+	Theme URI: http://o3world.com
+*/
+
+// size detection
+#mediaquery{
+  -webkit-transition: width .001s;
+  -moz-transition: width .001s;
+  -ms-transition: width .001s;
+  -o-transition: width .001s;
+  transition: width .001s;
+  visibility: hidden;
+  height: 1px;
+}
+
+// set-up mixins and variables
+@import "mixins";
+@import "variables";
+
+
+// CSS normalize
+@import "normalize";
+
+
+// webfonts
+@import "fonts";
+
+
+// base CSS
+@import "base";
+
+
+// 480px
+@media only screen and (min-width: 480px) {
+	@import "480";
+}
+
+
+// 768px
+@media only screen and (min-width: 768px) {
+	@import "768";
+}
+
+
+// 992px
+@media only screen and (min-width: 992px) {
+	@import "992";
+}
+
+
+// 1200px
+@media only screen and (min-width: 1200px) {
+	@import "1200";
+}
+
+
+// retina @2x
+@media
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 1.5dppx) {
+	@import "retina";
+}
+
+// retina for 768+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-width: 768px),
+only screen and (min--moz-device-pixel-ratio: 1.5) and (min-width: 768px),
+only screen and (-o-min-device-pixel-ratio: 3/2) and (min-width: 768px),
+only screen and (min-device-pixel-ratio: 1.5) and (min-width: 768px),
+only screen and (min-resolution: 1.5dppx) and (min-width: 768px) {
+
+
+
+}
+
+
+
+
+/*------------------------------------*\
+    PRINT
+\*------------------------------------*/
+
+@media print {
+	
+	* {
+		background:transparent !important;
+		color:#000 !important;
+		box-shadow:none !important;
+		text-shadow:none !important;
+	}
+	abbr[title]:after {
+		content:" (" attr(title) ")";
+	}
+	.ir a:after,
+	a[href^="javascript:"]:after,
+	a[href^="#"]:after {
+		content:"";
+	}
+	pre,blockquote {
+		border:1px solid #999;
+		page-break-inside:avoid;
+	}
+	thead {
+		display:table-header-group;
+	}
+	tr,img {
+		page-break-inside:avoid;
+	}
+	img {
+		max-width:100% !important;
+	}
+	@page {
+		margin:0.5cm;
+	}
+	p,
+	h2,
+	h3 {
+		orphans:3;
+		widows:3;
+	}
+	h2,
+	h3 {
+		page-break-after:avoid;
+	}
+	
+}

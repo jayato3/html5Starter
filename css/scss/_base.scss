@@ -1,0 +1,257 @@
+/*
+ * Variables
+ *
+ ************************************************************************************************/
+
+/*
+ * Base
+ *
+ ************************************************************************************************/
+
+/**
+ *  Media
+ */
+
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+
+/**
+ *  Lists
+ */
+
+ul {
+	list-style: square;
+}
+
+nav {
+	ul {
+		padding: 0;
+	}	
+}
+
+
+/*
+ * Layout
+ *
+ ************************************************************************************************/
+
+#mediaquery { width: 50px; }
+#mediaquery:after { content: "mobile"; }
+
+.wrapper {
+	@include clearfix;
+	border: 1px solid #ddd;
+	margin: 0 auto;
+	padding: 2em;
+	max-width: 960px;
+}
+
+section[role="main"] {
+	@include box-sizing;
+	float: left;
+	width: 60%;
+}
+
+.sidebar {
+	@include box-sizing;
+	float: right;
+	width: 30%
+}
+
+footer {
+	clear: both;
+}
+
+
+/*
+ * Modules
+ *
+ ************************************************************************************************/
+
+/**
+ *  WP specific
+ */
+   
+.alignnone {
+	margin:0 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+	display:block;
+	margin:0 auto 0 auto;
+}
+
+.alignright {
+	float:right;
+	margin:0 0 20px 20px;
+}
+
+.alignleft {
+	float:left;
+	margin:0 20px 20px 0;
+}
+
+.aligncenter {
+	display:block;
+	margin:0 auto 0 auto;
+}
+
+a img.alignright {
+	float:right;
+	margin:0 0 20px 20px;
+}
+
+a img.alignnone {
+	margin:0 20px 20px 0;
+}
+
+a img.alignleft {
+	float:left;
+	margin:0 20px 20px 0;
+}
+
+a img.aligncenter {
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.wp-caption {
+	background:#FFF;
+	border:1px solid #F0F0F0;
+	max-width:96%;
+	padding:5px 3px 10px;
+	text-align:center;
+}
+
+.wp-caption.alignnone {
+	margin:5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+	margin:5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+	margin:5px 0 20px 20px;
+}
+
+.wp-caption img {
+	border:0 none;
+	height:auto;
+	margin:0;
+	max-width:98.5%;
+	padding:0;
+	width:auto;
+}
+
+.wp-caption .wp-caption-text,
+.gallery-caption {
+	font-size:11px;
+	line-height:17px;
+	margin:0;
+	padding:0 4px 5px;
+}
+
+.sticky {
+	
+}
+
+.bypostauthor {
+	
+}
+
+/**
+ *  Text alignement
+ */
+
+.text-left {text-align: left;}
+.text-center {text-align: center;}
+.text-right {text-align: right;}
+
+/**
+ *  Floats
+ */
+
+.pull-left {float: left;}
+.pull-right {float: right;}
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
