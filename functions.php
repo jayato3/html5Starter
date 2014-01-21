@@ -1,25 +1,38 @@
 <?php
 /*
- *  Author: O3 World
- *  URL: o3world.com
- *  Custom functions, support, custom post types and more.
+ * Author: O3 World
+ * URL: o3world.com
+ * HTML5 theme functions and definitions
+ *
+ * Set up the theme and provides some helper functions, which are used in the
+ * theme as custom template tags. Others are attached to action and filter
+ * hooks in WordPress to change core functionality.
+ *
+ * Functions that are not pluggable (not wrapped in function_exists()) are
+ * instead attached to a filter or action hook.
+ *
+ * For more information on hooks, actions, and filters,
+ * @link http://codex.wordpress.org/Plugin_API
+ *
  */
-
-/*------------------------------------*\
-	External Modules/Files
-\*------------------------------------*/
+  
+/**
+ * Set up external modules/files
+ */
 
 // Load any external files you have here
 
-/*------------------------------------*\
-	Theme Support
-\*------------------------------------*/
+/**
+ * Theme Support
+ */
 
+// Set up the content width value based on the theme's design.
 if (!isset($content_width))
 {
     $content_width = 900;
 }
 
+// Extend base theme functionality
 if (function_exists('add_theme_support'))
 {
     // Add Menu Support
@@ -27,28 +40,29 @@ if (function_exists('add_theme_support'))
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
-    add_image_size('photo-grid-half', 433, 307, true); // Two wide grid thumbnails;
+    add_image_size('sample-image-size', 433, 307, true); // sample image size;
 
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
 
+	// Add jetpack infinite scroll
+	add_theme_support( 'infinite-scroll', array(
+	    'type'           => 'scroll',
+	    'footer'         => 'wrapper',
+	    'footer_widgets' => false,
+	    'container'      => 'content',
+	    'wrapper'        => true,
+	    'render'         => false,
+	    'posts_per_page' => 5
+	) );
+
 }
 
-add_theme_support( 'infinite-scroll', array(
-    'type'           => 'scroll',
-    'footer'         => 'wrapper',
-    'footer_widgets' => false,
-    'container'      => 'content',
-    'wrapper'        => true,
-    'render'         => false,
-    'posts_per_page' => 5
-) );
+/**
+ * Custom Functions
+ */
 
-/*------------------------------------*\
-	Functions
-\*------------------------------------*/
-
-// O3 header navigation
+// Header navigation
 function o3_main_nav()
 {
 	wp_nav_menu(
@@ -73,7 +87,7 @@ function o3_main_nav()
 	);
 }
 
-// O3 footer navigation
+// Footer navigation
 function o3_footer_nav()
 {
 	wp_nav_menu(
@@ -98,7 +112,10 @@ function o3_footer_nav()
 	);
 }
 
-// Load O3 scripts
+/**
+ * Load Javascript
+ */
+ 
 function o3_scripts()
 {
     if (!is_admin()) {
@@ -116,7 +133,10 @@ function o3_scripts()
     }
 }
 
-// Load O3 styles
+/**
+ * Load CSS
+ */
+ 
 function o3_styles()
 {  
 
@@ -132,7 +152,9 @@ function o3_styles()
     
 }
 
-// Register O3 Navigation
+/**
+ * Register navigation menus
+ */
 function register_o3_menu()
 {
 	
@@ -143,20 +165,29 @@ function register_o3_menu()
     ));
 }
 
-// Remove the <div> surrounding the dynamic navigation to cleanup markup
+/**
+ * Remove the <div> surrounding the dynamic navigation to cleanup markup
+ */
+ 
 function my_wp_nav_menu_args($args = '')
 {
     $args['container'] = false;
     return $args;
 }
 
-// Remove Injected classes, ID's and Page ID's from Navigation <li> items
+/**
+ * Remove Injected classes, ID's and Page ID's from Navigation <li> items
+ */
+ 
 function my_css_attributes_filter($var)
 {
     return is_array($var) ? array() : '';
 }
 
-// Remove invalid rel attribute values in the categorylist
+/**
+ * Remove invalid rel attribute values in the categorylist
+ */
+ 
 function remove_category_rel_from_category_list($thelist)
 {
     return str_replace('rel="category tag"', 'rel="tag"', $thelist);
