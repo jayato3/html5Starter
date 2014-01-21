@@ -3,9 +3,22 @@
 	<!-- section -->
 	<section role="main">
 	
-		<h1><?php _e( 'Archives', 'html5blank' ); ?></h1>
-	
-		<?php get_template_part('loop'); ?>
+		<h1><?php _e( 'Archives', 'o3world' ); ?></h1>
+		
+		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+			
+			<?php get_template_part( 'content' ); ?>
+			
+			<?php endwhile; ?>
+		
+		<?php else: ?>
+		
+			<?php 
+			// If no content, include the "No posts found" template.
+			get_template_part( 'content', 'none' );
+			?>
+		
+		<?php endif; ?>
 		
 		<?php get_template_part('pagination'); ?>
 	

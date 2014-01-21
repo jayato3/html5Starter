@@ -5,14 +5,7 @@
  * HTML5 theme functions and definitions
  *
  * Set up the theme and provides some helper functions, which are used in the
- * theme as custom template tags. Others are attached to action and filter
- * hooks in WordPress to change core functionality.
- *
- * Functions that are not pluggable (not wrapped in function_exists()) are
- * instead attached to a filter or action hook.
- *
- * For more information on hooks, actions, and filters,
- * @link http://codex.wordpress.org/Plugin_API
+ * theme as custom template tags. 
  *
  */
   
@@ -155,6 +148,7 @@ function o3_styles()
 /**
  * Register navigation menus
  */
+ 
 function register_o3_menu()
 {
 	
@@ -193,7 +187,11 @@ function remove_category_rel_from_category_list($thelist)
     return str_replace('rel="category tag"', 'rel="tag"', $thelist);
 }
 
-// Add page slug to body class, love this - Credit: Starkers Wordpress Theme
+
+/**
+ * Add page slug to body class - Credit: Starkers Wordpress Theme
+ */
+ 
 function add_slug_to_body_class($classes)
 {
     global $post;
@@ -211,22 +209,29 @@ function add_slug_to_body_class($classes)
     return $classes;
 }
 
-// If Dynamic Sidebar Exists
-//if (function_exists('register_sidebar'))
-//{
-//    // Define standard widget area
-//    register_sidebar(array(
-//        'name' => __('Sidebar', 'o3'),
-//        'description' => __('Holder for sidebar widgets', 'o3'),
-//        'id' => 'o3_sidebar',
-//        'before_widget' => '<div id="%1$s" class="%2$s">',
-//        'after_widget' => '</div>',
-//        'before_title' => '<h2>',
-//        'after_title' => '</h2>'
-//    ));
-//}
 
-// Remove wp_head() injected Recent Comment styles
+/**
+ * Add dynamic sidebar
+ */
+
+if (function_exists('register_sidebar'))
+{
+    // Define standard widget area
+    register_sidebar(array(
+        'name' => __('Primary Sidebar', 'o3'),
+        'description' => __('Holder for sidebar widgets', 'o3'),
+        'id' => 'sidebar-1',
+        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h2>',
+        'after_title' => '</h2>'
+    ));
+}
+
+/**
+ * Remove wp_head() injected Recent Comment styles
+ */
+ 
 function my_remove_recent_comments_style()
 {
     global $wp_widget_factory;
@@ -236,7 +241,11 @@ function my_remove_recent_comments_style()
     ));
 }
 
-// Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
+
+/**
+ * Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links
+ */
+
 function html5wp_pagination()
 {
     global $wp_query;
@@ -249,10 +258,13 @@ function html5wp_pagination()
     ));
 }
 
-// Custom Excerpts
+/**
+ * Custom Excerpts
+ */
+ 
 function html5wp_index($length) // Create 20 Word Callback for Index page Excerpts, call using html5wp_excerpt('html5wp_index');
 {
-    return 12;
+    return 20;
 }
 
 // Create 40 Word Callback for Custom Post Excerpts, call using html5wp_excerpt('html5wp_custom_post');
@@ -278,34 +290,37 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
     echo $output;
 }
 
-// Remove Admin bar
+/**
+ * Remove admin bar
+ */
+ 
 function remove_admin_bar()
 {
     return false;
 }
 
-// Remove 'text/css' from our enqueued stylesheet
+/**
+ * Remove 'text/css' from our enqueued stylesheet
+ */
+
 function html5_style_remove($tag)
 {
     return preg_replace('~\s+type=["\'][^"\']++["\']~', '', $tag);
 }
 
-// Remove thumbnail width and height dimensions that prevent fluid images in the_thumbnail
+/**
+ * Remove thumbnail width and height dimensions that prevent fluid images in the_thumbnail
+ */
+ 
 function remove_thumbnail_dimensions( $html )
 {
     $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
     return $html;
 }
 
-// Custom Gravatar in Settings > Discussion
-function html5blankgravatar ($avatar_defaults)
-{
-    $myavatar = get_template_directory_uri() . '/img/gravatar.jpg';
-    $avatar_defaults[$myavatar] = "Custom Gravatar";
-    return $avatar_defaults;
-}
-
-// Threaded Comments
+/**
+ * Threaded comments
+ */
 function enable_threaded_comments()
 {
     if (!is_admin()) {
@@ -315,7 +330,10 @@ function enable_threaded_comments()
     }
 }
 
-// Custom Comments Callback
+/**
+ * Custom comments callback
+ */
+ 
 function custom_comments($comment, $args, $depth)
 {
 	$GLOBALS['comment'] = $comment;
@@ -358,24 +376,85 @@ function custom_comments($comment, $args, $depth)
 	<?php endif; ?>
 <?php }
 
-/*------------------------------------*\
-	Custom Post Types
-\*------------------------------------*/
+/**
+ * Custom post types
+ */
+
+function create_post_type()
+{
+    // Example Custom Post type
+    register_post_type('custom-type', 
+        array(
+        'labels' => array(
+            'name' => __('Custom Post Type', 'custom-type'), // Rename these to suit
+            'singular_name' => __('Custom Post', 'custom-type'),
+            'add_new' => __('Add New', 'custom-type'),
+            'add_new_item' => __('Add New Post', 'custom-type'),
+            'edit' => __('Edit', 'custom-type'),
+            'edit_item' => __('Edit Post', 'custom-type'),
+            'new_item' => __('New Post', 'custom-type'),
+            'view' => __('View Posts', 'custom-type'),
+            'view_item' => __('View Posts', 'custom-type'),
+            'search_items' => __('Search Posts', 'custom-type'),
+            'not_found' => __('No Posts found', 'custom-type'),
+            'not_found_in_trash' => __('No Posts found in Trash', 'custom-type')
+        ),
+        'public' => true,
+        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+        'has_archive' => true,
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail',
+            'page-attributes'
+        ),
+        'rewrite' => array(
+        	'slug' => 'project',
+        	'with_front' => true
+        ),
+        'can_export' => true, // Allows export in Tools > Export 
+    ));
+    
+}
+
+/**
+ * Custom taxonomies
+ */
+
+function create_taxonomies() 
+{
+
+	// Example taxonomy
+    register_taxonomy(
+    	'terms',
+    	'custom-type',
+        array(
+            'labels' => array(
+                'name' => 'Term',
+                'add_new_item' => 'Add New Term',
+                'new_item_name' => "New Term"
+            ),
+            'hierarchical' => true,
+            'taxonomies' => array('post_tag')
+        )
+    ); 
+
+}
 
 
-
-/*------------------------------------*\
-	ShortCode Functions
-\*------------------------------------*/
+/**
+ * Short codes
+ */
 
 // Shortcode Demo with Nested Capability
 function html5_shortcode_demo($atts, $content = null) {
     return '<div class="shortcode-demo">' . do_shortcode($content) . '</div>'; // do_shortcode allows for nested Shortcodes
 }
 
-/*------------------------------------*\
-	Misc Functions
-\*------------------------------------*/
+/**
+ * Misc functions
+ */
 
 function new_excerpt_more( $more ) {
 	return '&hellip;';
@@ -387,15 +466,15 @@ function remove_dashboard_widgets() {
 	remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
 }
 
-// Move Yoast to bottom
+// Move Yoast SEO to bottom
 function yoasttobottom() {
 	return 'low';
 }
 
 
-/*------------------------------------*\
-	Actions + Filters + ShortCodes
-\*------------------------------------*/
+/**
+ * Add + Filters + Shortcodes
+ */
 
 // Add Actions
 add_action('init', 'o3_scripts'); // Add Custom Scripts to wp_head
@@ -405,6 +484,8 @@ add_action('init', 'register_o3_menu'); // Add O3 Menu
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets' ); // Clean up the dashboard
+add_action('init', 'create_post_type'); // Add Custom Post Types
+add_action( 'init', 'create_taxonomies', 0 ); // Add Custom Taxonomies
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
@@ -422,7 +503,6 @@ remove_action('wp_head', 'rel_canonical');
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 
 // Add Filters
-add_filter('avatar_defaults', 'html5blankgravatar'); // Custom Gravatar in Settings > Discussion
 add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
 add_filter('widget_text', 'do_shortcode'); // Allow shortcodes in Dynamic Sidebar
 add_filter('widget_text', 'shortcode_unautop'); // Remove <p> tags in Dynamic Sidebars (better!)

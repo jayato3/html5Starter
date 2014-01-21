@@ -30,9 +30,9 @@
 			
 			<?php the_content(); // Dynamic Content ?>
 			
-			<?php the_tags( __( 'Tags: ', 'o3world' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
+			<?php the_tags( __( '<p>Tags: ', 'o3world' ), ', ', '</p>'); // Separated by commas with a line break at the end ?>
 			
-			<p><?php _e( 'Categorised in: ', 'o3world' ); the_category(', '); // Separated by commas ?></p>
+			<p><?php _e( 'Categorized in: ', 'o3world' ); the_category(', '); // Separated by commas ?></p>
 			
 			<p><?php _e( 'This post was written by ', 'o3world' ); the_author(); ?></p>
 			

@@ -5,7 +5,16 @@
 	
 		<h1><?php _e( 'Tag Archive: ', 'o3world' ); echo single_tag_title('', false); ?></h1>
 	
-		<?php get_template_part('loop'); ?>
+		<?php
+		
+		// Start the Loop.
+		while ( have_posts() ) : the_post();
+		
+		get_template_part( 'content' );
+		
+		endwhile;
+		
+		?>
 		
 		<?php get_template_part('pagination'); ?>
 	
