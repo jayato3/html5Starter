@@ -32,7 +32,7 @@
 		<div id="mediaquery"></div>
 		
 		<!-- wrapper -->
-		<div class="wrapper">
+		<div class="wrapper" id="wrapper">
 	
 			<!-- header -->
 			<header class="header clear" role="banner">

@@ -34,6 +34,16 @@ if (function_exists('add_theme_support'))
 
 }
 
+add_theme_support( 'infinite-scroll', array(
+    'type'           => 'scroll',
+    'footer'         => 'wrapper',
+    'footer_widgets' => false,
+    'container'      => 'content',
+    'wrapper'        => true,
+    'render'         => false,
+    'posts_per_page' => 5
+) );
+
 /*------------------------------------*\
 	Functions
 \*------------------------------------*/
@@ -171,19 +181,19 @@ function add_slug_to_body_class($classes)
 }
 
 // If Dynamic Sidebar Exists
-if (function_exists('register_sidebar'))
-{
-    // Define standard widget area
-    register_sidebar(array(
-        'name' => __('Sidebar', 'o3'),
-        'description' => __('Holder for sidebar widgets', 'o3'),
-        'id' => 'o3_sidebar',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h2>',
-        'after_title' => '</h2>'
-    ));
-}
+//if (function_exists('register_sidebar'))
+//{
+//    // Define standard widget area
+//    register_sidebar(array(
+//        'name' => __('Sidebar', 'o3'),
+//        'description' => __('Holder for sidebar widgets', 'o3'),
+//        'id' => 'o3_sidebar',
+//        'before_widget' => '<div id="%1$s" class="%2$s">',
+//        'after_widget' => '</div>',
+//        'before_title' => '<h2>',
+//        'after_title' => '</h2>'
+//    ));
+//}
 
 // Remove wp_head() injected Recent Comment styles
 function my_remove_recent_comments_style()

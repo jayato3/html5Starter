@@ -5,9 +5,17 @@
 	
 		<h1><?php _e( 'Latest Posts', 'o3world' ); ?></h1>
 	
-		<?php get_template_part('loop'); ?>
+		<div id="content">
 		
-		<?php get_template_part('pagination'); ?>
+		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+			
+			<?php get_template_part( 'content' ); ?>
+			
+		<?php endwhile; ?>
+		
+		<?php endif; ?>
+		
+		</div>
 	
 	</section>
 	<!-- /section -->
