@@ -21,7 +21,7 @@
 		</h2>
 		<!-- /post title -->
 		
-		<?php html5wp_excerpt('html5wp_custom_post'); ?>
+		<?php the_content(); //html5wp_excerpt('html5wp_custom_post'); ?>
 		
 		<!-- post details -->
 		<span class="date"><?php the_time('F j, Y'); ?> <?php the_time('g:i a'); ?></span>

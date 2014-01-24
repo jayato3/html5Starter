@@ -1,5 +1,5 @@
 			<!-- footer -->
-			<footer class="footer" role="contentinfo" id="footer">
+			<footer class="footer" role="contentinfo">
 				
 				<!-- copyright -->
 				<p class="copyright">

@@ -20,14 +20,12 @@
  */
 
 // Set up the content width value based on the theme's design.
-if (!isset($content_width))
-{
+if (!isset($content_width)) {
     $content_width = 900;
 }
 
 // Extend base theme functionality
-if (function_exists('add_theme_support'))
-{
+if (function_exists('add_theme_support')) {
     // Add Menu Support
     add_theme_support('menus');
 
@@ -38,17 +36,6 @@ if (function_exists('add_theme_support'))
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
 
-	// Add jetpack infinite scroll
-	add_theme_support( 'infinite-scroll', array(
-	    'type'           => 'scroll',
-	    'footer'         => 'wrapper',
-	    'footer_widgets' => false,
-	    'container'      => 'content',
-	    'wrapper'        => true,
-	    'render'         => false,
-	    'posts_per_page' => 5
-	) );
-
 }
 
 /**
@@ -56,8 +43,7 @@ if (function_exists('add_theme_support'))
  */
 
 // Header navigation
-function o3_main_nav()
-{
+function o3_main_nav() {
 	wp_nav_menu(
 	array(
 		'theme_location'  => 'header-menu',
@@ -81,8 +67,7 @@ function o3_main_nav()
 }
 
 // Footer navigation
-function o3_footer_nav()
-{
+function o3_footer_nav() {
 	wp_nav_menu(
 	array(
 		'theme_location'  => 'footer-menu',
@@ -109,11 +94,10 @@ function o3_footer_nav()
  * Load Javascript
  */
  
-function o3_scripts()
-{
-    if (!is_admin()) {
+function o3_scripts() {
+    if (!is_admin()){
             
-        wp_register_script('modernizr', get_template_directory_uri() . '/js/modernizr.min.js', array(), '2.6.2'); // Modernizr
+        wp_register_script('modernizr', get_template_directory_uri() . '/js/modernizr.min.js', array(), '2.7.1'); // Modernizr
         wp_enqueue_script('modernizr'); // Enqueue it!
         
         wp_register_script('o3-plugins', get_template_directory_uri() . '/js/plugins.js', array( 'jquery' ), '1.0.0', true); // Custom scripts
@@ -130,8 +114,7 @@ function o3_scripts()
  * Load CSS
  */
  
-function o3_styles()
-{  
+function o3_styles() {  
 
 	global $wp_styles;
 	  
@@ -149,8 +132,7 @@ function o3_styles()
  * Register navigation menus
  */
  
-function register_o3_menu()
-{
+function register_o3_menu() {
 	
     register_nav_menus(array( // Using array to specify more menus if needed
         'header-menu' => __('Header Menu', 'o3'), // Main Navigation
@@ -163,8 +145,7 @@ function register_o3_menu()
  * Remove the <div> surrounding the dynamic navigation to cleanup markup
  */
  
-function my_wp_nav_menu_args($args = '')
-{
+function my_wp_nav_menu_args($args = '') {
     $args['container'] = false;
     return $args;
 }
@@ -173,8 +154,7 @@ function my_wp_nav_menu_args($args = '')
  * Remove Injected classes, ID's and Page ID's from Navigation <li> items
  */
  
-function my_css_attributes_filter($var)
-{
+function my_css_attributes_filter($var) {
     return is_array($var) ? array() : '';
 }
 
@@ -182,8 +162,7 @@ function my_css_attributes_filter($var)
  * Remove invalid rel attribute values in the categorylist
  */
  
-function remove_category_rel_from_category_list($thelist)
-{
+function remove_category_rel_from_category_list($thelist) {
     return str_replace('rel="category tag"', 'rel="tag"', $thelist);
 }
 
@@ -192,8 +171,7 @@ function remove_category_rel_from_category_list($thelist)
  * Add page slug to body class - Credit: Starkers Wordpress Theme
  */
  
-function add_slug_to_body_class($classes)
-{
+function add_slug_to_body_class($classes) {
     global $post;
     if (is_home()) {
         $key = array_search('blog', $classes);
@@ -214,8 +192,7 @@ function add_slug_to_body_class($classes)
  * Add dynamic sidebar
  */
 
-if (function_exists('register_sidebar'))
-{
+if (function_exists('register_sidebar')) {
     // Define standard widget area
     register_sidebar(array(
         'name' => __('Primary Sidebar', 'o3'),
@@ -232,8 +209,7 @@ if (function_exists('register_sidebar'))
  * Remove wp_head() injected Recent Comment styles
  */
  
-function my_remove_recent_comments_style()
-{
+function my_remove_recent_comments_style() {
     global $wp_widget_factory;
     remove_action('wp_head', array(
         $wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
@@ -246,8 +222,7 @@ function my_remove_recent_comments_style()
  * Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links
  */
 
-function html5wp_pagination()
-{
+function html5wp_pagination() {
     global $wp_query;
     $big = 999999999;
     echo paginate_links(array(
@@ -262,20 +237,18 @@ function html5wp_pagination()
  * Custom Excerpts
  */
  
-function html5wp_index($length) // Create 20 Word Callback for Index page Excerpts, call using html5wp_excerpt('html5wp_index');
-{
+// Create 20 Word Callback for Index page Excerpts, call using html5wp_excerpt('html5wp_index');
+function html5wp_index($length) {
     return 20;
 }
 
 // Create 40 Word Callback for Custom Post Excerpts, call using html5wp_excerpt('html5wp_custom_post');
-function html5wp_custom_post($length)
-{
+function html5wp_custom_post($length) {
     return 40;
 }
 
 // Create the Custom Excerpts callback
-function html5wp_excerpt($length_callback = '', $more_callback = '')
-{
+function html5wp_excerpt($length_callback = '', $more_callback = '') {
     global $post;
     if (function_exists($length_callback)) {
         add_filter('excerpt_length', $length_callback);
@@ -294,8 +267,7 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
  * Remove admin bar
  */
  
-function remove_admin_bar()
-{
+function remove_admin_bar() {
     return false;
 }
 
@@ -303,8 +275,7 @@ function remove_admin_bar()
  * Remove 'text/css' from our enqueued stylesheet
  */
 
-function html5_style_remove($tag)
-{
+function html5_style_remove($tag) {
     return preg_replace('~\s+type=["\'][^"\']++["\']~', '', $tag);
 }
 
@@ -312,8 +283,7 @@ function html5_style_remove($tag)
  * Remove thumbnail width and height dimensions that prevent fluid images in the_thumbnail
  */
  
-function remove_thumbnail_dimensions( $html )
-{
+function remove_thumbnail_dimensions( $html ) {
     $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
     return $html;
 }
@@ -321,8 +291,7 @@ function remove_thumbnail_dimensions( $html )
 /**
  * Threaded comments
  */
-function enable_threaded_comments()
-{
+function enable_threaded_comments() {
     if (!is_admin()) {
         if (is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
             wp_enqueue_script('comment-reply');
@@ -334,8 +303,7 @@ function enable_threaded_comments()
  * Custom comments callback
  */
  
-function custom_comments($comment, $args, $depth)
-{
+function custom_comments($comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment;
 	extract($args, EXTR_SKIP);
 	
@@ -380,8 +348,8 @@ function custom_comments($comment, $args, $depth)
  * Custom post types
  */
 
-function create_post_type()
-{
+function create_post_type() {
+
     // Example Custom Post type
     register_post_type('custom-type', 
         array(
@@ -422,8 +390,7 @@ function create_post_type()
  * Custom taxonomies
  */
 
-function create_taxonomies() 
-{
+function create_taxonomies() {
 
 	// Example taxonomy
     register_taxonomy(
