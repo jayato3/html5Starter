@@ -13,6 +13,10 @@
 		<?php wp_list_comments('type=comment&callback=custom_comments'); // Custom callback in functions.php ?>
 	</ul>
 
+	<div class="navigation">
+		<?php paginate_comments_links(); ?> 
+	</div>
+	
 <?php elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 	
 	<p><?php _e( 'Comments are closed here.', 'o3world' ); ?></p>

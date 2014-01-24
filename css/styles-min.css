@@ -539,6 +539,9 @@ footer {
 /**
  *  WP specific
  */
+.bypostauthor {
+  background: #f1f1f1; }
+
 .alignnone {
   margin: 0 20px 20px 0; }
 

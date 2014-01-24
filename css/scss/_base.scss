@@ -74,7 +74,12 @@ footer {
 /**
  *  WP specific
  */
-   
+
+// identify comments by post author
+.bypostauthor {
+	background: #f1f1f1;
+}
+
 .alignnone {
 	margin:0 20px 20px 0;
 }
@@ -155,14 +160,6 @@ a img.aligncenter {
 	line-height:17px;
 	margin:0;
 	padding:0 4px 5px;
-}
-
-.sticky {
-	
-}
-
-.bypostauthor {
-	
 }
 
 /**
