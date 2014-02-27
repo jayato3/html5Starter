@@ -21,7 +21,7 @@
 
 // Set up the content width value based on the theme's design.
 if (!isset($content_width)) {
-    $content_width = 900;
+    $content_width = 960;
 }
 
 // Extend base theme functionality
