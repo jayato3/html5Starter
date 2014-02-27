@@ -2,6 +2,10 @@
 	Theme Name: O3 World
 	Theme URI: http://o3world.com
 */
+/*
+ * Size detection
+ *
+ ********************************************************/
 #mediaquery {
   -webkit-transition: width .001s;
   -moz-transition: width .001s;
@@ -11,22 +15,40 @@
   visibility: hidden;
   height: 1px; }
 
-/* #Layout
-================================================== */
+/*
+ * Imports
+ *
+ ********************************************************/
+/*
+ * Layout
+ *
+ ************************************************************************************************/
 /* --- Grid variables ---*/
-/* #Typography
-================================================== */
+/*
+ * Typography
+ *
+ ************************************************************************************************/
 /* Based on a 16px base font size this is equivalent to an 18 pixel baseline grid */
-/* #Styling
-================================================== */
-/* #Helpers
-================================================== */
+/*
+ * mixins for common CSS properties
+ *
+ ************************************************************************************************/
+/*
+ * Helpers
+ *
+ ************************************************************************************************/
 /* Accessible hiding */
 /* Hide from visual and speaking browsers */
 /* Cross browser inline-block: http://css-tricks.com/snippets/css/cross-browser-inline-block/ */
 /* The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/ */
-/* Colors
-================================================== */
+/*
+ * site-wide SCSS variable declaration
+ *
+ ************************************************************************************************/
+/*
+ * font declarations
+ *
+ ********************************************************/
 /*
  * global reset and normalization CSS
  *
@@ -73,9 +95,10 @@ audio:not([controls]) {
 [hidden] {
   display: none; }
 
-/* ==========================================================================
-   Base
-   ========================================================================== */
+/*
+ * Base
+ *
+ ********************************************************/
 /*
  * 1. Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
  *    `em` units.
@@ -107,9 +130,10 @@ textarea {
 body {
   margin: 0; }
 
-/* ==========================================================================
-   Links
-   ========================================================================== */
+/*
+ * Links
+ *
+ ********************************************************/
 /*
  * Addresses `outline` inconsistency between Chrome and other browsers.
  */
@@ -123,9 +147,10 @@ a:active,
 a:hover {
   outline: 0; }
 
-/* ==========================================================================
-   Typography
-   ========================================================================== */
+/*
+ * Typography
+ *
+ ********************************************************/
 /*
  * Addresses font sizes and margins set differently in IE 6/7.
  * Addresses font sizes within `section` and `article` in Firefox 4+, Safari 5,
@@ -246,9 +271,10 @@ sup {
 sub {
   bottom: -0.25em; }
 
-/* ==========================================================================
-   Lists
-   ========================================================================== */
+/*
+ * Lists
+ *
+ ********************************************************/
 /*
  * Addresses margins set differently in IE 6/7.
  */
@@ -277,9 +303,10 @@ nav ol {
   list-style: none;
   list-style-image: none; }
 
-/* ==========================================================================
-   Embedded content
-   ========================================================================== */
+/*
+ * Embedded Content
+ *
+ ********************************************************/
 /*
  * 1. Removes border when inside `a` element in IE 6/7/8/9 and Firefox 3.
  * 2. Improves image quality when scaled in IE 7.
@@ -296,18 +323,20 @@ img {
 svg:not(:root) {
   overflow: hidden; }
 
-/* ==========================================================================
-   Figures
-   ========================================================================== */
+/*
+ * Figures
+ *
+ ********************************************************/
 /*
  * Addresses margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
  */
 figure {
   margin: 0; }
 
-/* ==========================================================================
-   Forms
-   ========================================================================== */
+/*
+ * Forms
+ *
+ ********************************************************/
 /*
  * Corrects margin displayed oddly in IE 6/7.
  */
@@ -450,9 +479,10 @@ textarea {
   vertical-align: top;
   /* 2 */ }
 
-/* ==========================================================================
-   Tables
-   ========================================================================== */
+/*
+ * Tables
+ *
+ ********************************************************/
 /*
  * Remove most spacing between table cells.
  */
@@ -461,8 +491,10 @@ table {
   border-spacing: 0;
   margin-bottom: 2.25em; }
 
-/* Web fonts
-================================================== */
+/*
+ * Web fonts
+ *
+ ********************************************************/
 @font-face {
   font-family: 'Font-Name';
   src: url("fonts/font-name.eot");
@@ -741,12 +773,14 @@ a img.aligncenter {
     display: block;
     padding: 60px 0 0 !important; } }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
-  /* ==========================================================================
-     Retina 
-     ========================================================================== */ }
-/*------------------------------------*\
-    PRINT
-\*------------------------------------*/
+  /*
+   * retina CSS
+   *
+   ************************************************************************************************/ }
+/*
+ * Print only
+ *
+ ********************************************************/
 @media print {
   * {
     background: transparent !important;

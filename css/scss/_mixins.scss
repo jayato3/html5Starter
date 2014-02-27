@@ -1,5 +1,7 @@
-/* #Layout
-================================================== */
+/*
+ * Layout
+ *
+ ************************************************************************************************/
 
 /* --- Grid variables ---*/ 
 $max_columns: 12;
@@ -12,24 +14,30 @@ $gutter_pc: 0%;
 }
 
 
-/* #Typography
-================================================== */
+/*
+ * Typography
+ *
+ ************************************************************************************************/
 
 @mixin font-size($font-size: 16) {
-$rem: ($font-size / 16);
-font-size: $font-size * 1px;
-font-size: #{$rem}rem; }
+	$rem: ($font-size / 16);
+	font-size: $font-size * 1px;
+	font-size: #{$rem}rem;
+}
 
 @mixin line-height($line-height: 18) {
-$rem: ($line-height / 18);
-line-height: $line-height * 1px;
-line-height: #{$rem}rem; }
+	$rem: ($line-height / 18);
+	line-height: $line-height * 1px;
+	line-height: #{$rem}rem;
+}
 
 $baseline: 1.125em; /* Based on a 16px base font size this is equivalent to an 18 pixel baseline grid */
 
 
-/* #Styling
-================================================== */
+/*
+ * mixins for common CSS properties
+ *
+ ************************************************************************************************/
 
 @mixin box-sizing( $value: border-box ) {
 	-webkit-box-sizing: $value;
@@ -109,53 +117,11 @@ $baseline: 1.125em; /* Based on a 16px base font size this is equivalent to an 1
 	border-radius: #{$radius}px;
 }
 
-@mixin shadow-left {
-	background: -webkit-gradient(radial, left center, 0px, center center, 50%, color-stop(0%,rgba(0,0,0,0.05)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-	background: -moz-radial-gradient(left, ellipse cover, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 50%); /* FF3.6+ */
-	background: -webkit-radial-gradient(left, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 50%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(left, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 50%); /* Opera 12+ */
-	background: -ms-radial-gradient(left, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 50%); /* IE10+ */
-	background: radial-gradient(ellipse at left center, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 50%); /* W3C */
-}
 
-@mixin shadow-bottom-left {
-	background: -moz-linear-gradient(45deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 30%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(0,0,0,0.05)), color-stop(30%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(45deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(45deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(45deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* IE10+ */
-	background: linear-gradient(45deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* W3C */
-}
-
-@mixin shadow-top-left {
-	background: -moz-linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 30%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(0,0,0,0.05)), color-stop(30%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(135deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(135deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(135deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 30%); /* IE10+ */
-	background: linear-gradient(135deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 35%); /* W3C */
-}
-
-@mixin shadow-top-right {
-	background: -moz-linear-gradient(235deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 40%); /* FF3.6+ */
-	background: -webkit-gradient(linear, right top, left bottom, color-stop(0%,rgba(0,0,0,0.05)), color-stop(40%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(235deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 40%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(235deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 40%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(235deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 40%); /* IE10+ */
-	background: linear-gradient(235deg, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 40%); /* W3C */
-}
-
-@mixin shadow-top {
-	background: -webkit-gradient(radial, center top, 0px, center center, 0%, color-stop(0%,rgba(0,0,0,0.05)), color-stop(60%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-	background: -moz-radial-gradient(center top, ellipse cover, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 60%); /* FF3.6+ */
-	background: -webkit-radial-gradient(center top, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 60%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center top, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 60%); /* Opera 12+ */
-	background: -ms-radial-gradient(center top, ellipse cover, rgba(0,0,0,0.05) 0%,rgba(255,255,255,0) 60%); /* IE10+ */
-	background: radial-gradient(ellipse at center top, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 60%); /* W3C */
-}
-
-/* #Helpers
-================================================== */
+/*
+ * Helpers
+ *
+ ************************************************************************************************/
 
 /* Accessible hiding */
 

@@ -35,7 +35,23 @@ if (function_exists('add_theme_support')) {
 
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
+    
+    // Enables post formats
+    //add_theme_support( 'post-formats', array( 'chat', 'audio', 'video', 'status', 'quote', 'link', 'gallery', 'aside' ) );
 
+}
+
+function remove_footer_admin () {
+	echo '<span id="footer-thankyou">Created with <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Designed by <a href="http://o3world.com" target="_blank">O3 World</a></span>';
+}
+
+/**
+ * Security Functions
+ */
+
+// remove WP version from RSS feeds
+function wpt_remove_version() {
+   return '';
 }
 
 /**
@@ -484,6 +500,8 @@ add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove 
 add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to post images
 add_filter('excerpt_more', 'new_excerpt_more'); // Format the_excerpt read more notation
 add_filter( 'wpseo_metabox_prio', 'yoasttobottom'); // Move Yoast below custom fields
+add_filter('the_generator', 'wpt_remove_version'); // Remove WP version from RSS
+add_filter('admin_footer_text', 'remove_footer_admin'); // Sign the footer link
 
 // Shortcodes
 add_shortcode('html5_shortcode_demo', 'html5_shortcode_demo');

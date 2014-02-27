@@ -3,7 +3,11 @@
 	Theme URI: http://o3world.com
 */
 
-// size detection
+/*
+ * Size detection
+ *
+ ********************************************************/
+
 #mediaquery{
   -webkit-transition: width .001s;
   -moz-transition: width .001s;
@@ -14,7 +18,10 @@
   height: 1px;
 }
 
-// set-up mixins and variables
+/*
+ * Imports
+ *
+ ********************************************************/
 @import "mixins";
 @import "variables";
 
@@ -80,9 +87,10 @@ only screen and (min-resolution: 1.5dppx) and (min-width: 768px) {
 
 
 
-/*------------------------------------*\
-    PRINT
-\*------------------------------------*/
+/*
+ * Print only
+ *
+ ********************************************************/
 
 @media print {
 	
