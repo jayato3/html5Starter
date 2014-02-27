@@ -4,3 +4,5 @@
 
 * Yoast SEO
 * Advanced Custom Fields
+
+This theme assumes you want post excerpts on the index pages and full entries on single entry pages. 
